@@ -1,6 +1,7 @@
 package com.example.authservice.service.impl;
 
 import com.example.authservice.controller.dto.request.CreateUserRequest;
+import com.example.authservice.entity.Enum.Role;
 import com.example.authservice.entity.User;
 import com.example.authservice.repository.UserRepository;
 import com.example.authservice.service.AuthService;
@@ -21,6 +22,7 @@ public class AuthServiceImpl implements AuthService {
         u.setEmail(request.getEmail());
         u.setUsername(request.getUsername());
         u.setPassword(request.getPassword());
+        u.getRoles().add(Role.USER);
         userRepository.save(u);
     }
 }
