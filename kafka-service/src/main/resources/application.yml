@@ -1,0 +1,10 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    discovery:
+      enabled: false
+  application:
+    name: kafka-service
+  kafka:
+    bootstrap-servers: localhost:9092

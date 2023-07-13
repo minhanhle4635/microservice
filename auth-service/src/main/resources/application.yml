@@ -24,3 +24,10 @@ spring:
           print:
             banner: false
     show-sql: ${JPA_SHOW_SQL:false}
+  cloud:
+    discovery:
+      enabled: false
+eureka:
+  client:
+    service-url:
+      default-zone: http://locahost:8761/eureka
