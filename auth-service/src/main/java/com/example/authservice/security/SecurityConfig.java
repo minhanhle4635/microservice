@@ -35,6 +35,8 @@ public class SecurityConfig {
                 .antMatchers("/home/user/**").hasAuthority(Role.USER.name())
                 .anyRequest().authenticated()
                 .and()
+                .formLogin()
+                .and()
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
