@@ -26,8 +26,10 @@ spring:
     show-sql: ${JPA_SHOW_SQL:false}
   cloud:
     discovery:
-      enabled: false
+      enabled: true
 eureka:
   client:
     service-url:
       default-zone: http://locahost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
