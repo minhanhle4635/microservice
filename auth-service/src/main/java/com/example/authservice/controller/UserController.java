@@ -4,9 +4,7 @@ import com.example.authservice.controller.dto.response.UserDTO;
 import com.example.authservice.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -26,5 +24,9 @@ public class UserController {
     @GetMapping("/user/all")
     public ResponseEntity<List<UserDTO>> allUsers(){
         return ResponseEntity.ok(userService.getAllUser());
+    }
+    @GetMapping("/user/{id}")
+    public ResponseEntity<UserDTO> getUser(@PathVariable Long id){
+        return ResponseEntity.ok(userService.getUser(id));
     }
 }
