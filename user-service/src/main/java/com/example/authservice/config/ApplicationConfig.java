@@ -1,6 +1,6 @@
 package com.example.authservice.config;
 
-import com.example.authservice.repository.UserRepository;
+import com.example.authservice.repository.AccountRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,11 +16,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @Configuration
 @AllArgsConstructor
 public class ApplicationConfig {
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
+        return username -> accountRepository.findByUsername(username).orElseThrow(()-> new UsernameNotFoundException("Username not found"));
     }
     @Bean
     public AuthenticationProvider authenticationProvider(){

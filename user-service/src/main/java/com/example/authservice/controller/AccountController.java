@@ -1,7 +1,7 @@
 package com.example.authservice.controller;
 
 import com.example.authservice.controller.dto.response.UserDTO;
-import com.example.authservice.service.UserService;
+import com.example.authservice.service.AccountService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +10,9 @@ import java.util.List;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/home")
-public class UserController {
-    private final UserService userService;
+@RequestMapping("/account")
+public class AccountController {
+    private final AccountService accountService;
     @GetMapping("/admin")
     public ResponseEntity<String> admin(){
         return ResponseEntity.ok("Welcome admin");
@@ -21,12 +21,12 @@ public class UserController {
     public ResponseEntity<String> user(){
         return ResponseEntity.ok("Welcome user");
     }
-    @GetMapping("/user/all")
-    public ResponseEntity<List<UserDTO>> allUsers(){
-        return ResponseEntity.ok(userService.getAllUser());
+    @GetMapping("/account/all")
+    public ResponseEntity<List<UserDTO>> allAccount(){
+        return ResponseEntity.ok(accountService.getAllUser());
     }
-    @GetMapping("/user/{id}")
-    public ResponseEntity<UserDTO> getUser(@PathVariable Long id){
-        return ResponseEntity.ok(userService.getUser(id));
+    @GetMapping("/account/{id}")
+    public ResponseEntity<UserDTO> getAccount(@PathVariable Long id){
+        return ResponseEntity.ok(accountService.getUser(id));
     }
 }

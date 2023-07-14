@@ -2,9 +2,9 @@ server:
   port: 8080
 spring:
   application:
-    name: auth-service
+    name: user-service
   datasource:
-    url: jdbc:mariadb://localhost:3306/user
+    url: jdbc:mariadb://localhost:3307/user-service
     username: root
     password: 123456
     driver-class-name: org.mariadb.jdbc.Driver
@@ -26,7 +26,7 @@ spring:
     show-sql: ${JPA_SHOW_SQL:false}
   cloud:
     discovery:
-      enabled: true
+      enabled: false
 eureka:
   client:
     service-url:

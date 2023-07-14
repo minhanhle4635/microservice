@@ -3,17 +3,15 @@ package com.example.authservice.controller;
 import com.example.authservice.controller.dto.request.CreateUserRequest;
 import com.example.authservice.controller.dto.request.LoginRequest;
 import com.example.authservice.controller.dto.response.AuthenticationResponse;
-import com.example.authservice.entity.User;
-import com.example.authservice.repository.UserRepository;
+import com.example.authservice.entity.Account;
+import com.example.authservice.repository.AccountRepository;
 import com.example.authservice.service.JwtService;
 import com.example.authservice.service.AuthService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.checkerframework.checker.units.qual.A;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
@@ -28,7 +26,7 @@ public class AuthController {
 
     private final AuthenticationManager authenticationManager;
 
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
 
     private final UserDetailsService userDetailsService;
 
@@ -44,8 +42,8 @@ public class AuthController {
         authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword())
         );
-        User user = userRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
-        String jwtToken = jwtService.generateToken(user);
+        Account account = accountRepository.findByUsername(request.getUsername()).orElseThrow(() -> new UsernameNotFoundException("Username not found"));
+        String jwtToken = jwtService.generateToken(account);
         return ResponseEntity.ok(AuthenticationResponse
                 .builder()
                 .token(jwtToken)

@@ -16,7 +16,7 @@
     <description>main-service</description>
 
     <modules>
-        <module>auth-service</module>
+        <module>user-service</module>
         <module>kafka-service</module>
         <module>discovery-service</module>
     </modules>

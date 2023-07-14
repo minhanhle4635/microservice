@@ -12,16 +12,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
 @Entity
-@Table(name = "user")
+@Table(name = "account")
 @Getter
 @Setter
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class User extends Auditing implements UserDetails {
+public class Account extends Auditing implements UserDetails {
 
     @Column(unique = true)
     String username;
@@ -29,8 +28,8 @@ public class User extends Auditing implements UserDetails {
     @Column
     String password;
 
-    @Column
-    String email;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    User user;
 
     @Column
     @Enumerated(EnumType.STRING)
