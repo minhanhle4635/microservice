@@ -15,7 +15,7 @@ import javax.persistence.Table;
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class User extends Auditing{
     String name;
-    String age;
+    Integer age;
     String phone;
     String email;
 }
