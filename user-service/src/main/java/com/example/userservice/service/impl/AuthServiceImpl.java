@@ -52,6 +52,9 @@ public class AuthServiceImpl implements AuthService {
         //send kafka
         SyncUserMessage message = new SyncUserMessage(
                 savedUser.getId(),
+                savedUser.getCreatedDate(),
+                savedUser.getUpdatedDate(),
+                savedUser.isActive(),
                 savedUser.getName(),
                 savedUser.getPhone(),
                 savedUser.getAge(),
