@@ -26,6 +26,7 @@ public class AuthServiceImpl implements AuthService {
     private final JwtService jwtService;
     private final PasswordEncoder passwordEncoder;
     private final UserDataEventProducer userDataEventProducer;
+
     private void syncUserData(SyncUserMessage message) {
         userDataEventProducer.send(message);
     }

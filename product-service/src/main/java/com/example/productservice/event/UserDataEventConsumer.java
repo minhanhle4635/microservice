@@ -25,6 +25,7 @@ public class UserDataEventConsumer {
     @StreamListener(SyncUserDataSink.SYNCHRONIZE_USER_DATA_INPUT)
     public void receiveMessage(SyncUserMessage message) {
         try {
+            log.info(String.format("User Data consumer poll record: %s", message.getId()));
             userRepository.save(
                     new User(
                             message.getId(),
