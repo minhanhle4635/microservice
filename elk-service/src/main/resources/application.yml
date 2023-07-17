@@ -1,0 +1,3 @@
+logging:
+  file:
+    name: D:\ELK\spring-boot-elk.log
