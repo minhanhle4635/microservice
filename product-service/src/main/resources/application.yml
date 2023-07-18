@@ -30,6 +30,9 @@ spring:
   kafka:
     bootstrap:
       servers: localhost:9092
+    consumer:
+      value-deserializer: org.apache.kafka.common.serialization.ByteArrayDeserializer
+      auto-offset-reset: earliest
 eureka:
     client:
       service-url:

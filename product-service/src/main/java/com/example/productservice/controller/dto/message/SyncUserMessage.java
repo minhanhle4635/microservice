@@ -1,13 +1,17 @@
 package com.example.productservice.controller.dto.message;
 
 import lombok.AccessLevel;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 import java.time.LocalDateTime;
 
-@Data
+@Setter
+@Getter
 @FieldDefaults(level = AccessLevel.PRIVATE)
+@NoArgsConstructor
 public class SyncUserMessage {
     Long id;
     LocalDateTime createdDate;

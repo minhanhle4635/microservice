@@ -26,6 +26,13 @@ spring:
     show-sql: ${JPA_SHOW_SQL:false}
   kafka:
     bootstrap-servers: localhost:9092
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      acks: -1
+      retries: 1
+      properties:
+        [enable-idempotence]: true
+        [max.in.flight.request.per.connection]: 5
   cloud:
     discovery:
       enabled: false
