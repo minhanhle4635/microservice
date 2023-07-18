@@ -13,6 +13,7 @@ import com.example.userservice.service.AuthService;
 import com.example.userservice.service.JwtService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -27,9 +28,8 @@ public class AuthServiceImpl implements AuthService {
     private final PasswordEncoder passwordEncoder;
     private final UserDataEventProducer userDataEventProducer;
 
-    private void syncUserData(SyncUserMessage message) {
-        userDataEventProducer.send(message);
-    }
+    private KafkaTemplate<String, SyncUserMessage> kafkaTemplate;
+    private final String KAFKA_TOPIC = "user-topic";
 
     @Override
     public AuthenticationResponse register(CreateUserRequest request) {
@@ -61,7 +61,7 @@ public class AuthServiceImpl implements AuthService {
                 savedUser.getAge(),
                 savedUser.getEmail()
         );
-        syncUserData(message);
+        kafkaTemplate.send(KAFKA_TOPIC, message);
         String jwtToken = jwtService.generateToken(a);
         return AuthenticationResponse.builder().token(jwtToken).build();
     }
