@@ -27,6 +27,8 @@ public class SecurityConfig {
                 .antMatchers("/eureka/**").permitAll()
                 .antMatchers("/auth/**").permitAll()
                 .antMatchers("/product/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/user/**").permitAll()
                 .antMatchers("/account/admin/**").hasAuthority(Role.ADMIN.name())
                 .antMatchers("/account/user/**").hasAuthority(Role.USER.name())
                 .anyRequest().authenticated()

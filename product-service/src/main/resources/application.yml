@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   application:
-    name: user-service
+    name: product-service
   datasource:
     url: jdbc:mariadb://localhost:3307/product-service
     username: root
@@ -39,3 +39,11 @@ eureka:
         default-zone: http://locahost:8761/eureka
       fetch-registry: true
       register-with-eureka: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
